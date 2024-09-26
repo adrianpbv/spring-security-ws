@@ -1,0 +1,20 @@
+HELP.md
+/spring-sec*/.gradle
+/spring-sec*/build/
+/spring-sec*/gradle/wrapper/gradle-wrapper.jar
+!/spring-sec*/**/src/main/**/build/
+!/spring-sec*/**/src/test/**/build/
+
+### IntelliJ IDEA ###
+.idea
+/spring-sec*/.idea/
+/spring-sec*/.idea
+/spring-sec*/*.iws
+/spring-sec*/*.iml
+/spring-sec*/*.ipr
+/spring-sec*/out/
+!/spring-sec*/**/src/main/**/out/
+!/spring-sec*/**/src/test/**/out/
+.DS_Store
+
+
