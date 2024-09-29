@@ -14,12 +14,13 @@ public class ProjectSecurityConfig {
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         /*http.authorizeHttpRequests((requests) -> requests.anyRequest().permitAll());*/
         /*http.authorizeHttpRequests((requests) -> requests.anyRequest().denyAll());*/
+//      default config so only authenticated users will be allowed to invoke all the URLs of the api
+//      http.authorizeHttpRequests((requests) -> requests.anyRequest().authenticated());
         http.authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/myAccount", "/myBalance", "/myLoans", "/myCards").authenticated()
                 .requestMatchers("/notices", "/contact", "/error").permitAll());
-        http.formLogin(withDefaults());
-        http.httpBasic(withDefaults());
+        http.formLogin(withDefaults()); // flc -> flc.disable() // disables the default login form shown in browser
+        http.httpBasic(withDefaults());// hbc -> hbc.disable() // will prevent the browser from asking credentials
         return http.build();
     }
-
 }
