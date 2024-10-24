@@ -33,6 +33,10 @@ public class ProjectSecurityConfig {
         return new JdbcUserDetailsManager(dataSource);
     }*/
 
+    /**
+     * Define password encoder
+     * by default Spring Security uses BCryptPasswordEncoder
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
