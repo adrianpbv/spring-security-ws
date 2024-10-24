@@ -1,4 +1,3 @@
-HELP.md
 /spring-sec*/.gradle
 /spring-sec*/build/
 /spring-sec*/gradle/wrapper/gradle-wrapper.jar

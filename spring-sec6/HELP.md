@@ -30,14 +30,18 @@ These additional references should also help you:
 
 * [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
 
-### Note
+### Notes
 
-* JdbcUserDetailsManager is an implementation of the UserDetailsService interface that provides user authentication and 
-authorization by retrieving user details from a database using JDBC (check EazyBankUserDetailsService custom implementation). It also implements the UserDetailsManager interface, 
-allowing for the creation, update, and deletion of user accounts. JdbcUserDetailsManager is not used for LDAP integration, 
-does not provide built-in methods for password encryption/decryption, and does not manage HTTP sessions or cookies
+class ProviderManager 
+    .authenticate() has all the Providers available, it will ask for the supported providers, default is DaoAuthenticationProvider
 
-* Default AuthenticationProvider DaoAuthenticationProvider and PasswordEncoder BCryptPasswordEncoder are used for authentication
+Define an AuthenticationProvider by implementing its interface, 
+override authenticate() -> implement your own authentication logic, load the user and pass from db and 
+   perform the authentication along any other verification logic ...
+override supports() -> return true if the current AuthenticationProvider support the type of authentication object provided
+
+
+
 
 
 
