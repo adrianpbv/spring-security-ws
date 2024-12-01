@@ -1,0 +1,7 @@
+# Authentication and Authorization
+
+1. User logs-in with their credentials
+2. Once login is successful, the user is given a Role or Authority which has permission
+to make certain request inside the Spring Boot web application
+
+# Create table customer and authorities
