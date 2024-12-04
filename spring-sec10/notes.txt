@@ -1,0 +1,17 @@
+# Filters
+Can be used to intercept requests/response
+Spring uses them to enhance security
+Use them to add some business logic around the Spring's filters
+
+Do not use it in production
+1. @EnableWebSecurity(debug=true)
+2. logging.level.org.springframework.security.web.FilterChainProxy=DEBUG
+3. Debug class FilterChainProxy -> VirtualFilterChain.doFilter
+
+To create a custom filter
+1. Create a class that implements javax.servlet.Filter.
+It can be also other interfaces like OncePerRequestFilter and GenericFilterBean
+2. Add Filter to the configuration by using
+addFilterAt()
+addFilterBefore()
+addFilterAfter()
