@@ -1,0 +1,25 @@
+
+Steps to use JWT tokens in Spring Security
+1. Add dependencies
+2. Make the application Stateless to not use sessions. SessionCreationPolicy.STATELESS
+2.1 the token will not be stored in the session. once the clients send it to the server, it will be validated
+3. Allow the server to send Headers on the response.
+4. Create a custom filter (JWTTokenGeneratorFilter) to intercept the request and validate the token (OncePerRequestFilter)
+5. To skip the token creation on every request use shouldNotFilter() method to only apply the filter on the login endpoint
+6. Create JWTTokenValidatorFilter to validate the token and authenticate the user
+7. Add the filter to the chain of filters on the security configuration
+8. Generate the token at JWTTokenGeneratorFilter.doFilterInternal() , dont forget to continue the filter chain
+9. Validate the token at JWTTokenValidatorFilter.doFilterInternal()
+10. Test the JWT generation and validation at /user  and /account endpoints of section 11
+10.1 To validate just send a BasicAuthentication with username and password
+10.2 check token payload at https://jwt.io/ if it matches the business logic
+11. Create a custom authentication provider to receive the user auth details and authenticate the user manually
+
+
+
+
+Cors configurations:
+since the UI application and the backend application,
+they are deployed at a different domain location
+at different origin location,
+we have made these cors related configurations (on the config files)
