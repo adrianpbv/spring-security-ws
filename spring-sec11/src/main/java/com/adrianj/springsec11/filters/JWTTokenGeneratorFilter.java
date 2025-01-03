@@ -1,6 +1,7 @@
 package com.adrianj.springsec11.filters;
 
 import com.adrianj.springsec11.constants.ApplicationConstants;
+import com.adrianj.springsec11.utils.DateUtils;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.FilterChain;
@@ -45,7 +46,7 @@ public class JWTTokenGeneratorFilter extends OncePerRequestFilter {
                         .claim("authorities", authentication.getAuthorities().stream().map(
                                 GrantedAuthority::getAuthority).collect(Collectors.joining(",")))
                         .issuedAt(new Date())
-                        .expiration(new Date((new Date()).getTime() + 30000000)) // How long the token is valid in milliseconds
+                        .expiration(DateUtils.getDateFromNow(30, 0, 0)) // set the expiration date of the token
                         .signWith(secretKey)
                         .compact();
                 response.setHeader(ApplicationConstants.JWT_HEADER, jwt); // set the JWT token in the header of the response

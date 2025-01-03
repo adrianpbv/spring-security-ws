@@ -5,6 +5,7 @@ import com.adrianj.springsec11.db.entities.CustomerEntity;
 import com.adrianj.springsec11.db.repositories.CustomerRepository;
 import com.adrianj.springsec11.dto.LoginRequestDTO;
 import com.adrianj.springsec11.dto.LoginResponseDTO;
+import com.adrianj.springsec11.utils.DateUtils;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
@@ -63,7 +64,7 @@ public class UserController {
         return optionalCustomer.orElse(null);
     }
 
-    @PostMapping("/apiLogin") // TODO 11 Authenticate the user with custom AuthenticationManager
+    @PostMapping("/apiLogin") // TODO 11 Authenticate the user with custom AuthenticationManager. Here the token is generated at first
     public ResponseEntity<LoginResponseDTO> apiLogin(@RequestBody LoginRequestDTO loginRequest) {
         String jwt = "";
         Authentication authentication = UsernamePasswordAuthenticationToken.unauthenticated(loginRequest.username(),
@@ -79,7 +80,7 @@ public class UserController {
                         .claim("authorities", authenticationResponse.getAuthorities().stream().map(
                                 GrantedAuthority::getAuthority).collect(Collectors.joining(",")))
                         .issuedAt(new java.util.Date())
-                        .expiration(new java.util.Date((new java.util.Date()).getTime() + 30000000))
+                        .expiration(DateUtils.getDateFromNow(30, 0, 0))
                         .signWith(secretKey).compact();
             }
         }
