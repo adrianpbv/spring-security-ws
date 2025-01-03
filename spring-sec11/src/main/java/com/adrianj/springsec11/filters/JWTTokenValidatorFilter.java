@@ -50,9 +50,12 @@ public class JWTTokenValidatorFilter extends OncePerRequestFilter {
                                 .getPayload();
                         String username = String.valueOf(claims.get("username"));
                         String authorities = String.valueOf(claims.get("authorities")); // authorities is a comma separated string, next use commaSeparatedStringToAuthorityList to get objects GrantedAuthority
+                        // by creating this object the authentication is completed for Spring, see its constructor: super.setAuthenticated(true);
                         Authentication authentication = new UsernamePasswordAuthenticationToken(username, null,
-                                AuthorityUtils.commaSeparatedStringToAuthorityList(authorities));// by creating this object the authentication is completed for Spring, see its constructor: super.setAuthenticated(true);
-                        SecurityContextHolder.getContext().setAuthentication(authentication); // pass in the authentication object so Spring Security can use now that the user is authenticated
+                                AuthorityUtils.commaSeparatedStringToAuthorityList(authorities));
+                        // pass in the authentication object so Spring Security can use now that the user is authenticated
+                        // and the tokenGeneratorFilter will not be invoked
+                        SecurityContextHolder.getContext().setAuthentication(authentication);
                     }
                 }
 

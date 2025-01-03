@@ -1,8 +1,10 @@
 
 
 Note:
-Whenever we want to generate the JWT token the user has to be authenticated first with the login Api.
-The custom filter class that validate the token (JWTTokenValidatorFilter) will skip the validation on the login endpoint
+* Whenever we want to generate the JWT token the user has to be authenticated first with the login Api or
+by returning the token on an endpoint that requires authentication on the headers like /user on section11
+* /login api is permitAll() to allow access
+* The custom filter class that validates the token (JWTTokenValidatorFilter) will skip the validation on the /user endpoint
 
 
 Steps to use JWT tokens in Spring Security
