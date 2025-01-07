@@ -1,0 +1,26 @@
+ - This project is to add security to the project at a method level
+ - This method protection can be on any class: controller, service, repository
+ - In general, method level security allow to have an additional layer of security on methods
+that returns sensitive data
+
+Enforcing the security with the help of method level security is going to be super helpful
+so that the business logic or the methods can be invoke by authenticated and authorized users only.
+
+Approaches on how we are going to apply the authorization rules:
+1. Invocation authorization: validate whether the user can invoke a method or not based on their
+roles/authorities
+2. Filtering authorization: Validates what a method can receive through its parameters and what the
+                            invoker can receive back from the method post business logic execution.
+
+Steps:
+1. Enable @EnableMethodSecurity on SpringSec12Application.java
+2. Add @EnableMethodSecurity(jsr250Enabled = true, securedEnabled = true) this allow other annotations like
+@RolesAllowed, @PermitAll, @DenyAll and @Secured
+3.
+
+Check:
+Part of Invocation authorization:
+        AuthorizationManagerAfterMethodInterceptor (@PostAuthorize),
+        AuthorizationManagerBeforeMethodInterceptor (@PreAuthorize).
+
+Part of filtering authorization:
