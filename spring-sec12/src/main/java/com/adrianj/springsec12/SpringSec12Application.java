@@ -7,7 +7,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 
 @SpringBootApplication
 @EnableWebSecurity
-@EnableMethodSecurity(jsr250Enabled = true,securedEnabled = true)
+@EnableMethodSecurity(jsr250Enabled = true, securedEnabled = true) // TODO 1
 public class SpringSec12Application {
 
     public static void main(String[] args) {

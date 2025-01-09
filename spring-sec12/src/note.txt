@@ -16,7 +16,15 @@ Steps:
 1. Enable @EnableMethodSecurity on SpringSec12Application.java
 2. Add @EnableMethodSecurity(jsr250Enabled = true, securedEnabled = true) this allow other annotations like
 @RolesAllowed, @PermitAll, @DenyAll and @Secured
-3.
+3. Then add .authenticate() at configuration class to later add @PreAuthorize and @PostAuthorize on any of the
+methods that the endpoint is going to invoke
+4. Add @PreFilter and @PostFilter to control what values can be received and what values can be returned
+4.1 @PreFilter: the method must receive a Collection as parameter. If the collection contains a value
+which is not allowed, then it will be removed from the collection
+4.2 @PostFilter: the method must return a Collection. If the collection contains a value
+which is not allowed, then it will be removed from the collection
+
+
 
 Check:
 Part of Invocation authorization:
@@ -24,3 +32,5 @@ Part of Invocation authorization:
         AuthorizationManagerBeforeMethodInterceptor (@PreAuthorize).
 
 Part of filtering authorization:
+        PreFilterAuthorizationMethodInterceptor
+        PostFilterAuthorizationMethodInterceptor

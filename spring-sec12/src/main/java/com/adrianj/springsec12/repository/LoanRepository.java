@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LoanRepository extends CrudRepository<Loans, Long> {
 
-	// @PreAuthorize("hasRole('USER')")
+	// @PreAuthorize("hasRole('USER')") // TODO 3 Checks role before executing the method
 	List<Loans> findByCustomerIdOrderByStartDtDesc(long customerId);
 
 }

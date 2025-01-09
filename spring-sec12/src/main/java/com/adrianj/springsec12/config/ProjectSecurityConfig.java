@@ -62,7 +62,7 @@ public class ProjectSecurityConfig {
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/myAccount").hasRole("USER")
                         .requestMatchers("/myBalance").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers("/myLoans").authenticated()
+                        .requestMatchers("/myLoans").authenticated() // TODO 2 require the user to be authenticated to use @PostAuthorize and @PreAuthorize on any of the methods that the endpoint calls
                         .requestMatchers("/myCards").hasRole("USER")
                         .requestMatchers("/user").authenticated()
                         .requestMatchers("/notices", "/contact", "/error", "/register", "/invalidSession", "/apiLogin").permitAll());

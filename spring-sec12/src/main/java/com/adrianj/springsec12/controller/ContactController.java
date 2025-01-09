@@ -21,8 +21,8 @@ public class ContactController {
     private final ContactRepository contactRepository;
 
     @PostMapping("/contact")
-    // @PreFilter("filterObject.contactName != 'Test'")
-    @PostFilter("filterObject.contactName != 'Test'")
+    // @PreFilter("filterObject.contactName != 'Test'") // TODO 5 To not accept contacts with name Test. filterObject = List<Contact>
+    @PostFilter("filterObject.contactName != 'Test'") // TODO 6 To not return contacts with name Test
     public List<Contact> saveContactInquiryDetails(@RequestBody List<Contact> contacts) {
         List<Contact> returnContacts = new ArrayList<>();
         if(!contacts.isEmpty()) {
