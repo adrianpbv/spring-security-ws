@@ -34,3 +34,8 @@ Part of Invocation authorization:
 Part of filtering authorization:
         PreFilterAuthorizationMethodInterceptor
         PostFilterAuthorizationMethodInterceptor
+
+AOP: Aspect Oriented Programming. With the help of this concept Spring Boot and Spring framework,
+should be able to control the method invocations at the runtime. Same concept is used in Spring
+Security framework to decide whether a method should be invoked or whether an output from a method
+should be returned or not.
